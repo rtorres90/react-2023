@@ -1,29 +1,22 @@
 import {useState} from 'react';
 
 const Home = () => {
-    const [status, setStatus] = useState('Sad');
-
-    const handleClick = (e)=>{
-        alert("hello!")
-        console.log(e)
-    }
-
-    const handleSecondClick = (name, e)=>{
-        alert("Hello, " + name)
-        console.log(e)
-    }
-
-    const handleThirdClick = () => {
-        setStatus("Happy!")
-    }
+    const [blogs, setBlogs] = useState([
+        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
+        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
+        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
+      ])
 
     return ( 
         <div className="home">
-            <h2>Home Page</h2>
-            <button onClick={handleClick}>Click me!</button>
-            <button onClick={(e) => handleSecondClick("Sococo", e)}>Click me!</button>
-            <h1>{ status }</h1>
-            <button onClick={handleThirdClick}>Change State!</button>
+            {
+                blogs.map(blog => (
+                    <div className="blog-preview" key={blog.id}>
+                        <h2>{blog.title}</h2>
+                        <p>Written By {blog.author}</p>
+                    </div>
+                ))
+            }
         </div>
      );
 
